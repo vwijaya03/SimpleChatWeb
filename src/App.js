@@ -40,26 +40,11 @@ const App = () => {
     setIsLoading(true);
     setError(null);
 
-    if (!socket.connected) {
-      // Listen for the 'connect' event to make sure the socket is fully connected
-      socket.on('connect', () => {
-        try {
-          socket.emit('joinRoom', { username, roomId });
-        } catch (error) {
-          setIsLoading(false);
-          setError(`Whoops, something went wrong: ${error.message}`);
-        }
-      });
-  
-      // Attempt to connect
-      socket.connect();
-    } else {
-      try {
-        socket.emit('joinRoom', { username, roomId });
-      } catch (error) {
-        setIsLoading(false);
-        setError(`Whoops, something went wrong: ${error.message}`);
-      }
+    try {
+      socket.emit('joinRoom', { username, roomId });
+    } catch (error) {
+      setIsLoading(false);
+      setError(`Whoops, something went wrong: ${error.message}`);
     }
   };
 
@@ -69,7 +54,7 @@ const App = () => {
 
   const exitRoom = (username, roomId) => {
     socket.emit('exitRoom', { username, roomId });
-    socket.disconnect();
+    // socket.disconnect();
     setShowChat(false);
     setIsLoading(false);
   };
