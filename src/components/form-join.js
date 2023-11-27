@@ -1,32 +1,18 @@
 import React, { useState } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import { FaSpinner } from 'react-icons/fa'; 
-import socket from '../socket-service';
 
-const FormJoin = () => {
+const FormJoin = ({ onJoinRoom, isLoading }) => {
   const [username, setUsername] = useState('');
   const [roomId, setRoomId] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   const joinRoom = () => {
-    setIsLoading(true);
-
     if (username.trim() === '' || roomId.trim() === '') {
       alert('Please enter both username and room ID.');
       return;
     }
 
-    if (!socket.connected) {
-      alert('Socket is not connected. Please check your connection.');
-      return;
-    }
-
-    try {
-      socket.emit('joinRoom', { username, roomId });
-    } catch (error) {
-      console.error('Error emitting joinRoom event:', error);
-      // Handle the error as needed
-    }
+    onJoinRoom(username, roomId);
   };
 
   return (

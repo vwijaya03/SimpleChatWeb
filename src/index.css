@@ -20,10 +20,35 @@ code {
 }
 
 @keyframes spin {
-from {
-  transform: rotate(0deg);
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-to {
-  transform: rotate(360deg);
+
+/* Add these styles to your CSS file */
+
+.message-container {
+  display: flex;
+  justify-content: flex-end; /* Align messages to the right by default */
 }
+
+.message-container.other-user {
+  justify-content: flex-start; /* Align messages to the left for other users */
+}
+
+.message {
+  max-width: 98%; /* Adjust the maximum width as needed */
+}
+
+.current-user {
+  background-color: #5db075;
+  color: white;
+}
+
+.other-user {
+  background-color: #f6f6f6;
+  color: black;
 }
