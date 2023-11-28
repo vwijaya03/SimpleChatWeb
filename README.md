@@ -2,6 +2,7 @@
 ```bash
 $ git clone https://github.com/vwijaya03/SimpleChatWeb.git
 $ cd SimpleChatWeb && docker compose  up
+$ reactjs will run on localhost:3000
 ```
 
 ## Questions
