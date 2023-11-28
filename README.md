@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+## Installation
+```bash
+$ git clone https://github.com/vwijaya03/SimpleChatWeb.git
+$ cd SimpleChatWeb && docker compose  up
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Questions
 
-## Available Scripts
+```
+Date of submission
+■ 28 Nov 2023 18.57
 
-In the project directory, you can run:
+○ Time spent
+■ 4 days
 
-### `npm start`
+○ Assumptions made
+■ only mvp product to demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+○ Shortcuts/Compromises made
+■ implement lazy load fetch messages, more secure mongodb connection, acl.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+■ What would be your approach to ensuring the application is ready for production
+(testing)?
+- unit & integration testing provide by nestjs
+- CI CD
 
-### `npm test`
+■ How would you ensure a smooth user experience as 1000’s of users start using your
+app simultaneously?
+- dynamic infrastructure scale up
+- caching user data
+- handle open / closed connection
+- make the query is optimized
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+■ What key steps would you take to ensure application security?
+- auth token
+- db acl
+- in app acl
+- payload sanitation
+- network (VPN)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+○ What did you not include in your solution that you want us to know about? 
+- still learning about docker and the local machine, last time i implement on aws ec2 i can set private IPv4, but i dont know whats in local, because of that i cant use docker for the installation for the backend
+```
