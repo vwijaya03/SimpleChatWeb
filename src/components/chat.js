@@ -7,6 +7,7 @@ const Chat = ({ props, onExitRoom }) => {
   const username = props.username;
   const roomId = props.roomId;
   const [messages, setMessages] = useState([]);
+  const [maxHeight, setMaxHeight] = useState(400); 
   const messagesRef = useRef(messages);
   
   const handleIncomingMessage = (receivedMessage) => {
@@ -27,7 +28,7 @@ const Chat = ({ props, onExitRoom }) => {
       socket.on('messagesHistory', (data) => {
         const messagesHistory = data.messages;
         console.log('messagesRef', messagesRef.current);
-        setMessages((prevMessages) => [...messagesRef.current, ...messagesHistory]);
+        setMessages((prevMessages) => [...messagesRef.current, ...messagesHistory].reverse());
       });
     };
     let isMounted = true;
@@ -55,6 +56,23 @@ const Chat = ({ props, onExitRoom }) => {
     };
   }, [socket, roomId]);
 
+  useEffect(() => {
+    const updateMaxHeight = () => {
+      const windowHeight = window.innerHeight;
+      const newMaxHeight = Math.floor(windowHeight * 0.8);
+      setMaxHeight(newMaxHeight);
+    };
+
+    // Initial update
+    updateMaxHeight();
+
+    window.addEventListener('resize', updateMaxHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateMaxHeight);
+    };
+  }, []);
+
   const handleSendMessage = async (username, roomId, message) => {
     socket.emit('sendMessage', { username, roomId, message });
   };
@@ -66,21 +84,23 @@ const Chat = ({ props, onExitRoom }) => {
 
   return (
     <div className="container mt-4">
-      <div className="d-flex justify-content-between align-items-center">
-      <div>
-        <button 
-          className="btn btn-danger"
-          onClick={() => handleExitRoom()}
-        >
-          Exit
-        </button>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <button 
+            className="btn btn-danger"
+            onClick={() => handleExitRoom()}
+          >
+            Exit
+          </button>
+        </div>
+        <div className="text-center">
+          <h1>Room Id {roomId}</h1>
+        </div>
+        <div></div> {/* This empty div maintains the space between Exit button and Room Id label */}
       </div>
-      <div className="text-center">
-        <h1>Room Id {roomId}</h1>
+      <div style={{ overflowY: 'auto', maxHeight: `${maxHeight}px` }} className='mb-3'>
+        <ChatList messages={messages} currentUser={username} />
       </div>
-      <div></div> {/* This empty div maintains the space between Exit button and Room Id label */}
-    </div>
-      <ChatList messages={messages} currentUser={username} />
       <SendMessageForm 
         username={username}
         roomId={roomId}

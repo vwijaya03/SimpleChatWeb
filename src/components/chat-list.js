@@ -21,7 +21,7 @@ const ChatList = ({ messages, currentUser }) => {
         >
           <div className="message">
             <div className="username" style={{ fontWeight: 'bold' }}>
-              {message.username}
+              {message.username !== currentUser && (message.username)}
             </div>
             <div className="text">{message.message}</div>
           </div>

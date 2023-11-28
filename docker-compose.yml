@@ -1,0 +1,14 @@
+version: '1'
+
+services:
+  simple-chat-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: simple-chat-web
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/src
+      - /src/node_modules
+    command: npm start

@@ -40,6 +40,12 @@ const App = () => {
     setIsLoading(true);
     setError(null);
 
+    if (!socket.connected) {
+      setIsLoading(false);
+      setError('Socket is not connected. Please check your connection.');
+      return;
+    }
+
     try {
       socket.emit('joinRoom', { username, roomId });
     } catch (error) {
